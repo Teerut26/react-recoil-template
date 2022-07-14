@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useRecoilState } from "recoil";
+import "./App.css";
+import { counterState } from "./store/counterRecoil";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [counter, setCounter] = useRecoilState(counterState);
+    return (
+        <div>
+            <h1 className="text-3xl font-bold underline">{counter}</h1>
+            <button onClick={() => setCounter((pre) => pre + 1)}>
+                increase
+            </button>
+            <button onClick={() => setCounter((pre) => pre - 1)}>
+                decrease
+            </button>
+        </div>
+    );
 }
 
 export default App;
